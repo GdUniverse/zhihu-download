@@ -5,5 +5,4 @@ if not exist ".\logs\app.log" (
     pause
     exit /b
 )
-powershell -command "$lines = Get-Content '.\logs\app.log' -Encoding UTF8 | Select-Object -Last 4; $lines; $urlLine = $lines[-2]; if ($urlLine -match 'https?://[^\s]+') { start $matches[0] }"
-pause
+powershell -command "$urlLine = Get-Content '.\logs\app.log' -Encoding UTF8 | Select-Object -Last 3 | Select-Object -First 1; if ($urlLine -match 'https?://[^\s]+') { start $matches[0] }"
